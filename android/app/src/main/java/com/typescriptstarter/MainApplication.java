@@ -1,4 +1,4 @@
-package com.typescriptstarter;
+package com.infoveave;
 
 import android.app.Application;
 
