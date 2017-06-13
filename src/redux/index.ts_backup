@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+/*import { combineReducers } from 'redux';
 
 import counter from './counter/reducer';
 
@@ -13,4 +13,4 @@ const rootReducer = (state, action) => {
     return appReducer(newState, action);
 };
 
-export default rootReducer;
+export default rootReducer;*/
