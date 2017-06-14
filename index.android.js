@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -17,3 +17,10 @@ export default class typescriptStarter extends Component {
 }
 
 AppRegistry.registerComponent('infoveave', () => typescriptStarter);
+*/
+import {
+  AppRegistry
+} from 'react-native';
+import App from './src/App';
+
+AppRegistry.registerComponent('infoveave', () => App);

@@ -1,12 +1,15 @@
+//import React from 'react'
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+//import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk';
-import reducers from './redux/reducers';
-import LoginPage from './containers/Login';
+import reducers from './redux/reducers'
+import LoginPage from './containers/Login'
 
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 interface Props {
-  userName: string;
+  userName: string,
 }
 
 class App extends Component<Props, {}> {
@@ -14,7 +17,6 @@ class App extends Component<Props, {}> {
   }
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
         <LoginPage />
@@ -22,5 +24,4 @@ class App extends Component<Props, {}> {
     );
   }
 }
-
 export default App;

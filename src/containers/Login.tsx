@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import {
-    TextInput,
-    Text,
-    View,
-    Image,
     StyleSheet,
+    Dimensions,
+    Image,
 } from 'react-native';
+import { Container,
+         Content,
+         Form,
+         Item,
+         Input,
+         Label,
+         H2,
+         Text,
+         Footer,
+         FooterTab,
+         Button, } from 'native-base';
 import { bindActionCreators } from 'redux';
 //import * as LoginActions from '../redux/login/actions';
+import { login } from './../redux/actions';
 import { connect } from 'react-redux';
+const {height,width} = Dimensions.get('window');
 
 interface Props {
     userName: ''
@@ -23,20 +34,49 @@ class LoginPage extends Component<Props,{}> {
             password: ''
         }
     }
+    signin() {
+      console.log('button pressed', this.state);
+      var data = {
+        name: 'megha',
+        password: 'password'
+      };
+      console.log('button pressed - assigning dummydata : ', data);
+      this.props.login(data);
+    }
 
     render() {
+      console.log('the login data in render is  : ', this.props.loginData);
         return (
+          <Container>
+            <Content>
             <Image
-                source={require('./../images/background.png')}
-                style={styles.container}>
-                <Text style={styles.text}>Login</Text>
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={(name)=>this.setState({name})}
-                    value={this.state.name}
-                />
+            source={require('./../images/background.png')}
+            style={styles.container}>
+              <Image
+                source={require('./../images/full_logo.png')}
+                style={{width: width*.8, height: width*.175, padding: 10}}/>
+              <H2 style={{color: '#898989', marginTop: 10}}>Login</H2>
+              <Form style={{position: 'absolute', bottom: 44}}>
+                <Item stackedLabel>
+                  <Label>User name</Label>
+                  <Input />
+                </Item>
+                <Item stackedLabel>
+                  <Label>Password</Label>
+                  <Input />
+                </Item>
+              </Form>
             </Image>
-
+            </Content>
+            <Footer>
+              <FooterTab>
+                <Button full
+                  onPress={this.signin.bind(this)} >
+                  <Text>Sign in</Text>
+                </Button>
+              </FooterTab>
+            </Footer>
+          </Container>
         );
     }
 }
@@ -44,21 +84,27 @@ class LoginPage extends Component<Props,{}> {
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    width: undefined,
-    height: undefined,
+    paddingTop: 200,
+    width: width,
+    height: height - 80,
     backgroundColor:'transparent',
-    justifyContent: 'center',
+//    justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 18,
-    color: '#000'
-  },
-  textInput: {
-    //height: 44,
-    fontSize: 24,
-  }
+
 });
 
 //export default LoginPage;
-export default connect(state => ({}))(LoginPage);
+//export default connect(state => ({}))(LoginPage);
+
+const mapStateToProps = ({ loginConnect }) => {
+   const { loginData } = loginConnect;
+
+  return {
+    loginData
+          };
+};
+
+export default connect(mapStateToProps, {
+  login,
+})(LoginPage);
