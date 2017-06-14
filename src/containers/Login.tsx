@@ -16,13 +16,11 @@ import { Container,
          FooterTab,
          Button, } from 'native-base';
 import { bindActionCreators } from 'redux';
-//import * as LoginActions from '../redux/login/actions';
 import { login } from './../redux/actions';
 import { connect } from 'react-redux';
 const {height,width} = Dimensions.get('window');
 
 interface Props {
-    userName: ''
 }
 
 class LoginPage extends Component<Props,{}> {
@@ -88,20 +86,16 @@ const styles = StyleSheet.create({
     width: width,
     height: height - 80,
     backgroundColor:'transparent',
-//    justifyContent: 'center',
     alignItems: 'center',
   },
 
 });
 
-//export default LoginPage;
-//export default connect(state => ({}))(LoginPage);
-
 const mapStateToProps = ({ loginConnect }) => {
    const { loginData } = loginConnect;
 
   return {
-    loginData
+      loginData
           };
 };
 
